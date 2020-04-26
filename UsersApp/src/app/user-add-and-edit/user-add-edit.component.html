@@ -1,0 +1,96 @@
+
+<br><br>
+<h1>{{actionType}} User</h1>
+<br>
+<br>
+<form [formGroup]="form" (ngSubmit)="save()" #formDir="ngForm" novalidate>
+
+
+
+
+  <!--Name-->
+  <div class="form-group row">
+    <label class=" control-label col-md-12">Name</label>
+    <div class="col-md-12">
+      <input class="form-control" type="text" formControlName="name">
+    </div>
+    <span class="text-danger ml-3" *ngIf="name.invalid && formDir.submitted">
+      Name is required.
+    </span>
+  </div>
+
+
+  <!--username-->
+  <div class="form-group row">
+    <label class=" control-label col-md-12">User Name</label>
+    <div class="col-md-12">
+      <input class="form-control" type="text" formControlName="username">
+    </div>
+    <span class="text-danger ml-3" *ngIf="username.invalid && formDir.submitted">
+      User Name is required.
+    </span>
+  </div>
+
+
+  <!--Password-->
+  <div class="form-group row">
+    <label class=" control-label col-md-12">Password</label>
+    <div class="col-md-12">
+      <input class="form-control" type="password" formControlName="password">
+    </div>
+    <span class="text-danger ml-3" *ngIf="password.invalid && formDir.submitted">
+      Password is required.
+    </span>
+  </div>
+
+
+
+  <!--LastName-->
+  <div class="form-group row">
+    <label class=" control-label col-md-12">Last Name</label>
+    <div class="col-md-12">
+      <input class="form-control" type="text" formControlName="lastName">
+    </div>
+    <span class="text-danger ml-3" *ngIf="lastName.invalid && formDir.submitted">
+      Last Name is required.
+    </span>
+  </div>
+
+
+  <!--PhoneNumber-->
+  <div class="form-group row">
+    <label class=" control-label col-md-12">Phone Number</label>
+    <div class="col-md-12">
+      <input class="form-control" type="text" formControlName="phoneNumber" maxlength="11">
+    </div>
+    <span class="text-danger ml-3" *ngIf="phoneNumber.invalid && formDir.submitted">
+      Phone Number is required.
+    </span>
+  </div>
+
+
+
+
+  <!--Email-->
+  <div class="form-group row">
+    <label class=" control-label col-md-12">Email</label>
+    <div class="col-md-12">
+      <input class="form-control" type="text" formControlName="email" >
+    </div>
+    <span class="text-danger ml-3" *ngIf="email.invalid">
+      Please enter valid email !!
+    </span>
+   
+  </div>
+
+
+
+
+
+
+
+  <div class="form-group">
+    <button type="submit" class="btn btn-success float-right">Save</button>
+    <button class="btn btn-secondary float-left" (click)="cancel()">Cancel</button>
+  </div>
+</form>

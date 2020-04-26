@@ -1,0 +1,62 @@
+<h1>All Users</h1>
+
+<p *ngIf="!(users$ | async)"><em>Loading All Users...</em></p>
+<p>
+  <a [routerLink]="['/add']" class="btn btn-warning float-right mb-3">Add New User</a>
+</p>
+
+<table class="table table-sm table-hover" *ngIf="(users$ | async)?.length>0">
+  <thead>
+    <tr>
+      <th>Index</th>
+      <th>Name</th>
+      <th>Last Name</th>
+      <!-- <th>Phone Number</th> -->
+      <th>Date Added</th>
+      <th>Email Status</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let user of (users$ | async)">
+      <td>{{ user.userId }}</td>
+      <td><a [routerLink]="['/user/', user.userId]">{{ user.name }}</a></td>
+      <td>{{ user.lastName }}</td>
+      <!-- <td>{{ user.phoneNumber }}</td> -->
+      <td>{{ user.addedDate | date: "dd/MM/y - h:mm a" }}</td>
+
+      <td>
+
+        <span class="text-success" *ngIf="user.isEmailConfirmed">
+          Email Confirmed
+        </span>
+
+        <span class="text-danger" *ngIf="!user.isEmailConfirmed">
+          Email Not Confirmed
+        </span>
+        
+      
+      
+      </td>
+      <td>
+        <a title="Resend Confirmation Email Again" *ngIf="!user.isEmailConfirmed" 
+        [routerLink]="" 
+        (click)="confirm(user.userId,user.name)" 
+        class="btn btn-info btn-sm float-right">Resend</a>
+        
+      </td>
+      <td>
+
+        <a [routerLink]="['/user/edit/', user.userId]" class="btn btn-primary btn-sm float-right">Edit</a>
+      
+      </td>
+      <td>
+      
+        <a [routerLink]="" (click)="delete(user.userId)" class="btn btn-danger btn-sm float-right">Delete</a>
+      
+      </td>
+    </tr>
+  </tbody>
+</table>

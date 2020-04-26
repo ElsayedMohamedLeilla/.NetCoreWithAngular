@@ -1,0 +1,67 @@
+<ng-container *ngIf="(user$ | async) as user; else loading">
+
+  <br><br>
+    <h1> ( {{ user.name }} )</h1>
+    <br><br>
+    <table class="table table-sm table-hover table-bordered">
+     
+      <tbody>
+        <tr>
+          <th>Name</th>
+          <td>{{ user.name }}</td>
+        </tr>
+
+        <tr>
+          <th>Last Name</th>
+          <td>{{ user.lastName }}</td>
+        </tr>
+
+        <tr>
+          <th>User Name</th>
+          <td>{{ user.username }}</td>
+        </tr>
+
+        <tr>
+          <th>Password</th>
+          <td>{{ user.password }}</td>
+        </tr>
+
+        <tr>
+          <th>Phone Number</th>
+          <td>{{ user.phoneNumber }}</td>
+        </tr>
+
+        <tr>
+          <th>Email</th>
+          <td>{{ user.email }}</td>
+        </tr>
+        <tr>
+          <th>User Email Status</th>
+          <td>
+            <span class="text-success" *ngIf="user.isEmailConfirmed">
+              Email Confirmed
+            </span>
+    
+            <span class="text-danger" *ngIf="!user.isEmailConfirmed">
+              Email Not Confirmed
+            </span>
+          </td>
+        </tr>
+        <tr *ngIf="!user.isEmailConfirmed">
+          <th>Resend Comfirmation Email Again</th>
+          <td class="text-center">
+           <div class="text-center">
+            <a title="Resend Confirmation Email Again" *ngIf="!user.isEmailConfirmed" 
+            [routerLink]="" 
+            (click)="confirm(user.userId,user.name)" 
+            class="btn btn-info btn-sm ">Resend</a>
+           </div>
+            
+          </td>
+        </tr>
+
+      </tbody>
+    </table>
+  
+  </ng-container>
+  <ng-template #loading>Loading User …</ng-template>
